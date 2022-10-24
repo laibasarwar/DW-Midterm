@@ -1,11 +1,17 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
-import Home from "./pages/Home.js";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Movies from "./pages/MovieListing.js";
+import Movie from "./pages/IndividualMovie.js";
+import MovieCard from "./components/MovieCard.js";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <Movies />,
+  },
+  {
+    path: "movie/:id",
+    element: <Movie />,
   },
 ]);
 

@@ -21,6 +21,47 @@ h4 {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   margin-left: 40px;
 }
+.WeatherCard {
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid black;
+  margin: 0px 400px 40px 400px;
+}
+
+.WeatherCard--weatherType svg {
+  height: auto;
+  width: 130px;
+  margin-left: 40px;
+}
+
+.Weather--wrapper {
+  margin: 0 auto;
+  max-width: 600px;
+  max-height: 200px;
+  padding: 25px;
+  min-height: 100vh;
+}
+
+.WeatherCard-One {
+  margin: 0 auto;
+  display: flex;
+}
+
+.WeatherCard-Two {
+  margin: 0 auto;
+  display: flex;
+}
+
+.WeatherCard h2 {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  margin-left: 40px;
+  font-size: 30px;
+}
+
+.WeatherCard p {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  padding: 20px 40px;
+}
 
 .header {
   overflow: hidden;

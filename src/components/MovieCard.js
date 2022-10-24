@@ -1,10 +1,9 @@
 import React from "react";
 
-function MovieCard({ title, stars }) {
+function MovieCard({ movie }) {
   return (
-    <div className="MovieCard">
-      <h2>{title}</h2>
-      <h2>{stars}</h2>
+    <div>
+      <h2>{movie.title}</h2>
     </div>
   );
 }
