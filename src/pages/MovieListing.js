@@ -3,6 +3,7 @@ import React, { useEffect, useState, useMemo } from "react";
 import { IMDB_APP_API_KEY } from "../API_KEYS";
 import { BOOKS_APP_API_KEY } from "../API_KEYS";
 import MovieCard from "../components/MovieCard";
+
 function Movies() {
   const IMDBURL = `https://imdb-api.com/en/API/Top250Movies/${IMDB_APP_API_KEY}`;
   const BOOKSURL = `https://www.googleapis.com/books/v1/users/115218350790390753405/bookshelves/0/volumes?key=${BOOKS_APP_API_KEY}`;
@@ -13,22 +14,30 @@ function Movies() {
   useEffect(() => {
     axios
       .get(
-        // `https://imdb-api.com/en/API/Top250Movies/${IMDB_APP_API_KEY}`,
         `https://www.googleapis.com/books/v1/users/115218350790390753405/bookshelves/0/volumes?key=${BOOKS_APP_API_KEY}`
       )
-      // .then(function (mresponse) {
-      //   setMovieData(mresponse.data);
-      // })
       .then(function (bresponse) {
         setBookData(bresponse.data);
       })
       .catch(function (error) {
-        // setMovieData({});
         setBookData({});
       });
   }, []);
-  // console.log("Title", movieData.items);
+
   console.log("Book", bookData.items);
+
+  useEffect(() => {
+    axios
+      .get(`https://imdb-api.com/en/API/Top250Movies/${IMDB_APP_API_KEY}`)
+      .then(function (mresponse) {
+        setMovieData(mresponse.data);
+      })
+      .catch(function (error) {
+        setMovieData({});
+      });
+  }, []);
+
+  console.log("Title", movieData.items);
 
   // const { title } = useMemo(() => {
   //   const movieTitle = movieData.items[0] || {};
