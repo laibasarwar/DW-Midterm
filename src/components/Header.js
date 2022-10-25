@@ -5,11 +5,13 @@ function Header() {
     <div>
       <header>
         <div class="header">
+          <a href="/" class="title">
+            {" "}
+            My Favs Bookshelf
+          </a>
           <div class="header-content">
-            <a href="/?expression=Inception">Inception</a>
-            <a href="/?expression=Love">Love</a>
-            <a href="/?expression=Jaws">Jaws</a>
-            <a href="/?expression=Jumanji">Jumanji</a>
+            <a href="/">Movies</a>
+            <a href="/booklist">Books</a>
           </div>
         </div>
       </header>
