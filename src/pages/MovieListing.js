@@ -50,7 +50,7 @@ function Movies() {
     releaseDate,
     stars,
     // title,
-    // trailer,
+    trailer,
     writers,
     year,
   } = useMemo(() => {
@@ -95,7 +95,7 @@ function Movies() {
         releaseDate={releaseDate}
         stars={stars}
         // title={title}
-        // trailer={trailer}
+        trailer={trailer}
         writers={writers}
         year={year}
       />

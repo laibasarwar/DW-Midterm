@@ -25,7 +25,7 @@ function MovieCard({
       <h2>{title}</h2>
       <p> Awards: {awards} </p>
       <p> Companies: {companies} </p>
-      <p> Content RatingL{contentRating}</p>
+      <p> Content Rating: {contentRating}</p>
       <p> Director: {directors}</p>
       <p> Full Title: {fullTitle}</p>
       <p> Genres: {genres}</p>
