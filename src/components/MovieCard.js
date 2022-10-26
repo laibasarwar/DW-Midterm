@@ -1,5 +1,4 @@
 import React from "react";
-// import MovieImage from "./MovieImage";
 
 function MovieCard({
   awards,
@@ -32,12 +31,23 @@ function MovieCard({
       <p> ID: {id}</p>
       <p> imDb Rating: {imDbRating}</p>
       <p> Image:{image}</p>
+      <img src={image}></img>
       <p> Languages:{languages}</p>
       <p> Plot:{plot}</p>
       <p> Release Date: {releaseDate}</p>
       <p> Stars: {stars}</p>
       <p> Title: {title}</p>
       <p> Trailer: {trailer}</p>
+      <iframe
+        src={trailer}
+        width="960"
+        height="540"
+        allowfullscreen="true"
+        mozallowfullscreen="true"
+        webkitallowfullscreen="true"
+        frameborder="no"
+        scrolling="no"
+      ></iframe>
       <p> Writer: {writers}</p>
       <p> Year: {year}</p>
     </div>

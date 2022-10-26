@@ -5,10 +5,8 @@ import { BOOKS_APP_API_KEY } from "../API_KEYS";
 import Header from "../components/Header";
 import BookCard from "../components/bookCard";
 
-// const IMDBURL = `https://imdb-api.com/en/API/Title/${IMDB_APP_API_KEY}/tt1375666/FullActor,FullCast,Posters,Images,Trailer,Ratings,Wikipedia`;
-// const BOOKSURL = `https://www.googleapis.com/books/v1/users/115218350790390753405/bookshelves/0/volumes?key=${BOOKS_APP_API_KEY}`;
 const BOOKSURL = `https://books.googleapis.com/books/v1/volumes/79kczgEACAAJ?key=${BOOKS_APP_API_KEY}`;
-// 'https://books.googleapis.com/books/v1/volumes/79kczgEACAAJ?key=${BOOKS_APP_API_KEY}'
+
 function Book() {
   const [bookData, setBookData] = useState({});
   const [title, setTitle] = useState("79kczgEACAAJ");
@@ -24,7 +22,6 @@ function Book() {
     setTitle(titleToQuery);
     axios
       .get(
-        // `https://imdb-api.com/en/API/Title/${IMDB_APP_API_KEY}/${titleToQuery}/FullActor,FullCast,Posters,Images,Trailer,Ratings,Wikipedia`
         `https://books.googleapis.com/books/v1/volumes/${titleToQuery}?key=${BOOKS_APP_API_KEY}`
       )
       .then(function (bresponse) {

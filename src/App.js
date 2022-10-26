@@ -1,14 +1,20 @@
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+// import Home from "./pages/.js";
 import Movies from "./pages/MovieListing.js";
 import Movie from "./pages/IndividualMovie.js";
 import Books from "./pages/BookListing.js";
-import Book from "./pages/IndividualMovie.js";
+import Book from "./pages/IndividualBook.js";
 
 const router = createBrowserRouter([
   {
-    //Home - Movie Listing
+    //Home
     path: "/",
+    element: <Movie />,
+  },
+  {
+    //Movie Listing
+    path: "/movielist",
     element: <Movies />,
   },
   {

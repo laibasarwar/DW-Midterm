@@ -55,6 +55,7 @@ function Movies() {
     year,
   } = useMemo(() => {
     const movieMain = movieData || {};
+    const movieImage = movieData.trailer || {};
     return {
       awards: movieMain.awards,
       companies: movieMain.companies,
@@ -70,7 +71,7 @@ function Movies() {
       releaseDate: movieMain.releaseDate,
       stars: movieMain.stars,
       // title: movieMain.title,
-      // trailer: movieMain.trailer,
+      trailer: movieImage.link,
       writers: movieMain.writers,
       year: movieMain.year,
     };
