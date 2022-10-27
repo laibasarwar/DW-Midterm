@@ -1,34 +1,26 @@
 import axios from "axios";
 import React, { useEffect, useState, useMemo } from "react";
-import { useSearchParams } from "react-router-dom";
 import { BOOKS_APP_API_KEY } from "../API_KEYS";
 import Header from "../components/Header";
-import BookCard from "../components/bookCard";
+import BookListingCard from "../components/bookListingCard";
 
-// const IMDBURL = `https://imdb-api.com/en/API/Title/${IMDB_APP_API_KEY}/tt1375666/FullActor,FullCast,Posters,Images,Trailer,Ratings,Wikipedia`;
-// const BOOKSURL = `https://www.googleapis.com/books/v1/users/115218350790390753405/bookshelves/0/volumes?key=${BOOKS_APP_API_KEY}`;
-const BOOKSURL = `https://books.googleapis.com/books/v1/volumes/79kczgEACAAJ?key=${BOOKS_APP_API_KEY}`;
-// 'https://books.googleapis.com/books/v1/volumes/79kczgEACAAJ?key=${BOOKS_APP_API_KEY}'
-function Book() {
-  const [bookData, setBookData] = useState({});
-  const [title, setTitle] = useState("79kczgEACAAJ");
-  const [searchParams] = useSearchParams();
+function Books() {
+  const [bookData, setBookData] = useState([]);
 
-  //   //10 fav books
-  //   //Like a Bird, All My Rage, The Book Thief, Love Letters to the Dead, All the Bright Places, The Kite Runner, A Thousand Splendid Suns, And the Mountains Echoed, Home Fire, A Place for Us
+  // 10 fav books
+  // Like a Bird, All My Rage, The Book Thief, Love Letters to the Dead, All the Bright Places, The Kite Runner, A Thousand Splendid Suns, And the Mountains Echoed, Home Fire, A Place for Us
+  // id=79kczgEACAAJ , id=aEQxEAAAQBAJ, id=rk2MDQAAQBAJ , id=jr5CAgAAQBAJ , id=OqPoDAAAQBAJ , id=GrVPEAAAQBAJ , id=3vo0NQbIN2YC , id=NZJHAQAAQBAJ , id=qntnDwAAQBAJ , id=5w49DwAAQBAJ
 
-  console.log("searchParams", searchParams.get("title"));
+  // const BOOKSURL = `https://www.googleapis.com/books/v1/users/115218350790390753405/bookshelves/0/volumes?key=${BOOKS_APP_API_KEY}`;
 
   useEffect(() => {
-    const titleToQuery = searchParams.get("title") || title;
-    setTitle(titleToQuery);
     axios
       .get(
-        // `https://imdb-api.com/en/API/Title/${IMDB_APP_API_KEY}/${titleToQuery}/FullActor,FullCast,Posters,Images,Trailer,Ratings,Wikipedia`
-        `https://books.googleapis.com/books/v1/volumes/${titleToQuery}?key=${BOOKS_APP_API_KEY}`
+        `https://www.googleapis.com/books/v1/users/115218350790390753405/bookshelves/0/volumes?key=${BOOKS_APP_API_KEY}`
       )
-      .then(function (bresponse) {
-        setBookData(bresponse.data);
+      .then(function (response) {
+        console.log(response);
+        setBookData(response.data.items);
       })
       .catch(function (error) {
         console.warn(error);
@@ -36,39 +28,33 @@ function Book() {
       });
   }, []);
 
-  console.log("Title", bookData);
+  // console.log("BOOK2", bookData);
 
-  const {
-    author,
-    category,
-    description,
-    image,
-    preview,
-    publisher,
-    date,
-    btitle,
-  } = useMemo(() => {
-    const bookMain = bookData.volumeInfo || {};
-    const bookAuthor = bookMain.authors || {};
-    const bookCat = bookMain.categories || {};
-    const bookImage = bookMain.imageLinks || {};
-    return {
-      author: bookAuthor[0],
-      category: bookCat[0],
-      description: bookMain.description,
-      image: bookImage.thumbnail,
-      preview: bookMain.prevviewLink,
-      publisher: bookMain.publisher,
-      date: bookMain.publishedDate,
-      btitle: bookMain.title,
-    };
-  }, [bookData]);
+  // const { image1, btitle } = useMemo(() => {
+  //   const bookMain = bookData.items || {};
+  //   const bookVolumes1 = bookMain[0] || {};
+  //   const book1 = bookVolumes1.volumeInfo || {};
+  //   console.log("Book1", book1);
+  //   // console.log("Book1", btitle);
+  //   const bookImage1 = book1.imageLinks || {};
+  //   return {
+  //     image1: bookImage1.thumbnail,
+  //     btitle: book1.title,
+  //   };
+  // }, [bookData]);
 
   return (
     <div>
       <Header />
-      <h1>Individual Books</h1>
-      <BookCard
+      <h1>Books</h1>
+      {bookData.map((book, i) => (
+        <BookListingCard book={book} key={i} />
+      ))}
+
+      {/* <h3>{btitle}</h3>
+      <img src={image1}></img> */}
+
+      {/* <BookCard
         author={author}
         category={category}
         description={description}
@@ -77,44 +63,55 @@ function Book() {
         publisher={publisher}
         date={date}
         btitle={title}
-      />
+      /> */}
+    </div>
+  );
+
+  // console.log("BOOK URL", BOOKSURL);
+  // const [bookData, setBookData] = useState({});
+  // const [title, setTitle] = useState();
+  // const [searchParams] = useSearchParams();
+
+  // 10 fav books
+  // Like a Bird, All My Rage, The Book Thief, Love Letters to the Dead, All the Bright Places, The Kite Runner, A Thousand Splendid Suns, And the Mountains Echoed, Home Fire, A Place for Us
+  // id=79kczgEACAAJ , id=aEQxEAAAQBAJ, id=rk2MDQAAQBAJ , id=jr5CAgAAQBAJ , id=OqPoDAAAQBAJ , id=GrVPEAAAQBAJ , id=3vo0NQbIN2YC , id=NZJHAQAAQBAJ , id=qntnDwAAQBAJ , id=5w49DwAAQBAJ
+
+  // console.log("searchParams", bookData);
+
+  // useEffect(() => {
+  //   const titleToQuery = searchParams.get("title") || title;
+  //   setTitle(titleToQuery);
+  //   axios
+  //     .get(
+  //       `https://books.googleapis.com/books/v1/mylibrary/bookshelves/0/volumes?key=${BOOKS_APP_API_KEY}`
+  //     )
+  //     .then(function (bresponse) {
+  //       setBookData(bresponse.data);
+  //     })
+  //     .catch(function (error) {
+  //       console.warn(error);
+  //       setBookData({});
+  //     });
+  // }, []);
+
+  // console.log("Title", bookData);
+
+  // const { image, btitle } = useMemo(() => {
+  //   const bookMain = bookData.volumeInfo || {};
+  //   const bookImage = bookMain.imageLinks || {};
+  //   return {
+  //     image: bookImage.thumbnail,
+  //     btitle: bookMain.title,
+  //   };
+  // }, [bookData]);
+
+  return (
+    <div>
+      <Header />
+      <h1>Book Library</h1>
+      {/* <h2>{btitle}</h2>
+      <img src={image}></img> */}
     </div>
   );
 }
-export default Book;
-
-// import axios from "axios";
-// import React, { useEffect, useState, useMemo } from "react";
-// import { BOOKS_APP_API_KEY } from "../API_KEYS";
-// import BookCard from "../components/bookCard";
-
-// const BOOKSURL = `https://www.googleapis.com/books/v1/users/115218350790390753405/bookshelves/0/volumes?key=${BOOKS_APP_API_KEY}`;
-
-// function Books() {
-//   const [bookData, setBookData] = useState({});
-
-//   useEffect(() => {
-//     axios
-//       .get(
-//         `https://www.googleapis.com/books/v1/users/115218350790390753405/bookshelves/0/volumes?key=${BOOKS_APP_API_KEY}`
-//       )
-//       .then(function (bresponse) {
-//         setBookData(bresponse.data);
-//       })
-//       .catch(function (error) {
-//         setBookData({});
-//       });
-//   }, []);
-
-//   console.log("Book", bookData.items);
-
-//   //10 fav books
-//   //Like a Bird, All My Rage, The Book Thief, Love Letters to the Dead, All the Bright Places, The Kite Runner, A Thousand Splendid Suns, And the Mountains Echoed, Home Fire, A Place for Us
-
-//   return (
-//     <div>
-//       <h1>All Books</h1>
-//     </div>
-//   );
-// }
-// export default Books;
+export default Books;

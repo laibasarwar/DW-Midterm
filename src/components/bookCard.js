@@ -8,20 +8,18 @@ function BookCard({
   preview,
   publisher,
   date,
-  title,
+  btitle,
 }) {
   return (
     <div className="MovieCard">
-      <h2>{title}</h2>
+      <h3>{btitle}</h3>
       <p> Author: {author} </p>
       <p> Category: {category} </p>
       <p> Description: {description}</p>
-      <p> Image:{image}</p>
       <img src={image}></img>
       <p> Preview:{preview}</p>
       <p> Publisher:{publisher}</p>
       <p> Date: {date}</p>
-      <p> Title: {title}</p>
     </div>
   );
 }

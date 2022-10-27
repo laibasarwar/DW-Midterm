@@ -1,21 +1,27 @@
+.App {
+  font-size: 16px;
+  min-height: 100vh;
+}
+
+html,
+body {
+  margin: 0 auto;
+  padding: 0;
+  background-color: white;
+}
+
+.header-content {
+  margin-right: 20px;
+}
+
+/* Style the header links */
+
 .header {
   overflow: hidden;
   background-color: #b8c0f5;
   padding: 0px 0px 0px 0px;
 }
 
-.header a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-.header a.title {
-  font-size: 20px;
-  font-weight: bold;
-  float: left;
-}
-
-/* Style the header links */
 .header a {
   float: right;
   color: black;
@@ -32,4 +38,43 @@
 .header a:hover {
   background-color: white;
   color: #6d75a8;
+}
+
+.MovieListingCard {
+  padding: 20px;
+  border: 1px solid black;
+  /* margin: 100px 100px; */
+  flex-basis: 300px;
+}
+
+.MovieListingCard img {
+  height: 200px;
+  width: 130px;
+  position: center;
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.movieWrapper {
+  /* margin: px 100px 100px 100px;
+  max-height: 200px; */
+  padding: 25px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+.MovieListingCard h2 {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 15px;
+  text-align: center;
+}
+
+.MovieListingCard p {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  padding: 20px 40px;
 }

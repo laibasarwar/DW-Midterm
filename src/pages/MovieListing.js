@@ -1,31 +1,18 @@
 import axios from "axios";
-import React, { useEffect, useState, useMemo } from "react";
-import { useSearchParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { IMDB_APP_API_KEY } from "../API_KEYS";
 import Header from "../components/Header";
-import MovieCard from "../components/movieCard";
-
-const IMDBURL = `https://imdb-api.com/en/API/Title/${IMDB_APP_API_KEY}/tt1375666/FullActor,FullCast,Posters,Images,Trailer,Ratings,Wikipedia`;
+import MovieListingCard from "../components/movieListingCard";
 
 function Movies() {
-  const [movieData, setMovieData] = useState({});
-  const [title, setTitle] = useState("tt1375666");
-  const [searchParams] = useSearchParams();
-
-  //10 fav movies
-  //The Shawshank Redemption, Forrest Gump, The Lion King, Joker, Coco, Good Will Hunting, 3 Idiots, Room, Spotlight, The Help
-
-  console.log("searchParams", searchParams.get("title"));
+  const [movieData, setMovieData] = useState([]);
 
   useEffect(() => {
-    const titleToQuery = searchParams.get("title") || title;
-    setTitle(titleToQuery);
     axios
-      .get(
-        `https://imdb-api.com/en/API/Title/${IMDB_APP_API_KEY}/${titleToQuery}/FullActor,FullCast,Posters,Images,Trailer,Ratings,Wikipedia`
-      )
+      .get(`https://imdb-api.com/en/API/Top250Movies/${IMDB_APP_API_KEY}`)
+
       .then(function (mresponse) {
-        setMovieData(mresponse.data);
+        setMovieData(mresponse.data.items);
       })
       .catch(function (error) {
         console.warn(error);
@@ -33,74 +20,34 @@ function Movies() {
       });
   }, []);
 
-  console.log("Title", movieData);
+  console.log("all", movieData);
 
-  const {
-    awards,
-    companies,
-    contentRating,
-    directors,
-    fullTitle,
-    genres,
-    id,
-    imDbRating,
-    image,
-    languages,
-    plot,
-    releaseDate,
-    stars,
-    // title,
-    trailer,
-    writers,
-    year,
-  } = useMemo(() => {
-    const movieMain = movieData || {};
-    const movieImage = movieData.trailer || {};
-    return {
-      awards: movieMain.awards,
-      companies: movieMain.companies,
-      contentRating: movieMain.contentRating,
-      directors: movieMain.directors,
-      fullTitle: movieMain.fullTitle,
-      genres: movieMain.genres,
-      id: movieMain.id,
-      imDbRating: movieMain.imDbRating,
-      image: movieMain.image,
-      languages: movieMain.languages,
-      plot: movieMain.plot,
-      releaseDate: movieMain.releaseDate,
-      stars: movieMain.stars,
-      // title: movieMain.title,
-      trailer: movieImage.link,
-      writers: movieMain.writers,
-      year: movieMain.year,
-    };
-  }, [movieData]);
+  const filteredArray = movieData.filter((item) => {
+    if (
+      item.id === "tt0111161" ||
+      item.id === "tt0109830" ||
+      item.id === "tt0110357" ||
+      item.id === "tt7286456" ||
+      item.id === "tt2380307" ||
+      item.id === "tt0119217" ||
+      item.id === "tt1187043" ||
+      item.id === "tt3170832" ||
+      item.id === "tt1895587" ||
+      item.id === "tt1454029"
+    )
+      return item;
+  });
+  console.log("array", filteredArray);
 
   return (
     <div>
       <Header />
-      <h1>All Movies</h1>
-      <MovieCard
-        awards={awards}
-        companies={companies}
-        contentRating={contentRating}
-        directors={directors}
-        fullTitle={fullTitle}
-        genres={genres}
-        id={id}
-        imDbRating={imDbRating}
-        image={image}
-        languages={languages}
-        plot={plot}
-        releaseDate={releaseDate}
-        stars={stars}
-        // title={title}
-        trailer={trailer}
-        writers={writers}
-        year={year}
-      />
-      {/* <MovieCard movie={title} /> */}
+      <h1>Movies</h1>
+      <div className="movieWrapper">
+        {filteredArray.map((movie, i) => (
+          <MovieListingCard movie={movie} key={i} />
+        ))}
+      </div>
     </div>
   );
 }

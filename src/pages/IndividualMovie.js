@@ -5,7 +5,7 @@ import { IMDB_APP_API_KEY } from "../API_KEYS";
 import Header from "../components/Header";
 import MovieCard from "../components/movieCard";
 
-const IMDBURL = `https://imdb-api.com/en/API/Title/${IMDB_APP_API_KEY}/tt1375666/FullActor,FullCast,Posters,Images,Trailer,Ratings,Wikipedia`;
+// const IMDBURL = `https://imdb-api.com/en/API/Title/${IMDB_APP_API_KEY}/tt1375666/FullActor,FullCast,Posters,Images,Trailer,Ratings,Wikipedia`;
 
 function Movie() {
   const [movieData, setMovieData] = useState({});
@@ -22,7 +22,8 @@ function Movie() {
     setMovie(movieToQuery);
     axios
       .get(
-        `https://imdb-api.com/en/API/Title/${IMDB_APP_API_KEY}/${movieToQuery}/FullActor,FullCast,Posters,Images,Trailer,Ratings,Wikipedia`
+        // `https://imdb-api.com/en/API/Title/${IMDB_APP_API_KEY}/${movieToQuery}/FullActor,FullCast,Posters,Images,Trailer,Ratings,Wikipedia`
+        `https://imdb-api.com/en/API/Top250Movies/${IMDB_APP_API_KEY}]`
       )
       .then(function (mresponse) {
         setMovieData(mresponse.data);
@@ -49,7 +50,7 @@ function Movie() {
     plot,
     releaseDate,
     stars,
-    // title,
+    title,
     trailer,
     writers,
     year,
@@ -70,7 +71,7 @@ function Movie() {
       plot: movieMain.plot,
       releaseDate: movieMain.releaseDate,
       stars: movieMain.stars,
-      // title: movieMain.title,
+      title: movieMain.title,
       trailer: movieImage.linkEmbed,
       writers: movieMain.writers,
       year: movieMain.year,
@@ -95,7 +96,7 @@ function Movie() {
         plot={plot}
         releaseDate={releaseDate}
         stars={stars}
-        // title={title}
+        title={title}
         trailer={trailer}
         writers={writers}
         year={year}

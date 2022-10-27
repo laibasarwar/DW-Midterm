@@ -5,7 +5,7 @@ import { BOOKS_APP_API_KEY } from "../API_KEYS";
 import Header from "../components/Header";
 import BookCard from "../components/bookCard";
 
-const BOOKSURL = `https://books.googleapis.com/books/v1/volumes/79kczgEACAAJ?key=${BOOKS_APP_API_KEY}`;
+// const BOOKSURL = `https://books.googleapis.com/books/v1/volumes/79kczgEACAAJ?key=${BOOKS_APP_API_KEY}`;
 
 function Book() {
   const [bookData, setBookData] = useState({});
@@ -50,14 +50,14 @@ function Book() {
     const bookCat = bookMain.categories || {};
     const bookImage = bookMain.imageLinks || {};
     return {
+      btitle: bookMain.title,
       author: bookAuthor[0],
       category: bookCat[0],
       description: bookMain.description,
       image: bookImage.thumbnail,
-      preview: bookMain.prevviewLink,
+      preview: bookMain.previewLink,
       publisher: bookMain.publisher,
       date: bookMain.publishedDate,
-      btitle: bookMain.title,
     };
   }, [bookData]);
 
@@ -66,6 +66,7 @@ function Book() {
       <Header />
       <h1>Individual Books</h1>
       <BookCard
+        btitle={btitle}
         author={author}
         category={category}
         description={description}
@@ -73,7 +74,6 @@ function Book() {
         preview={preview}
         publisher={publisher}
         date={date}
-        btitle={title}
       />
     </div>
   );
