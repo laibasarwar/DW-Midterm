@@ -11,15 +11,20 @@ function BookCard({
   btitle,
 }) {
   return (
-    <div className="MovieCard">
-      <h3>{btitle}</h3>
-      <p> Author: {author} </p>
-      <p> Category: {category} </p>
-      <p> Description: {description}</p>
-      <img src={image}></img>
-      <p> Preview:{preview}</p>
-      <p> Publisher:{publisher}</p>
-      <p> Date: {date}</p>
+    <div className="BookCard">
+      <div className="Image">
+        <a href={preview}>
+          <img src={image}></img>
+        </a>
+      </div>
+      <div className="Content">
+        <h3>{btitle}</h3>
+        <p> by {author} </p>
+        <p> Category: {category} </p>
+        <p> Publisher: {publisher}</p>
+        <p> Published: {date}</p>
+        <p> Blurb: {description}</p>
+      </div>
     </div>
   );
 }

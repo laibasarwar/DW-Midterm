@@ -42,7 +42,7 @@ function Movies() {
   return (
     <div>
       <Header />
-      <h1>Movies</h1>
+      <h1>Favorite Movies So Far</h1>
       <div className="movieWrapper">
         {filteredArray.map((movie, i) => (
           <MovieListingCard movie={movie} key={i} />

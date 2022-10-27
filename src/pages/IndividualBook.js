@@ -1,19 +1,20 @@
 import axios from "axios";
 import React, { useEffect, useState, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
+import { useParams } from "react-router";
 import { BOOKS_APP_API_KEY } from "../API_KEYS";
 import Header from "../components/Header";
 import BookCard from "../components/bookCard";
-
-// const BOOKSURL = `https://books.googleapis.com/books/v1/volumes/79kczgEACAAJ?key=${BOOKS_APP_API_KEY}`;
 
 function Book() {
   const [bookData, setBookData] = useState({});
   const [title, setTitle] = useState("79kczgEACAAJ");
   const [searchParams] = useSearchParams();
 
-  //   //10 fav books
-  //   //Like a Bird, All My Rage, The Book Thief, Love Letters to the Dead, All the Bright Places, The Kite Runner, A Thousand Splendid Suns, And the Mountains Echoed, Home Fire, A Place for Us
+  //   const { id } = useParams();
+
+  //   const bookData1 = bookData.find((book) => book.id === id);
+  //   console.log("data", bookData1);
 
   console.log("searchParams", searchParams.get("title"));
 

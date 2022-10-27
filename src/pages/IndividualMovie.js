@@ -5,15 +5,10 @@ import { IMDB_APP_API_KEY } from "../API_KEYS";
 import Header from "../components/Header";
 import MovieCard from "../components/movieCard";
 
-// const IMDBURL = `https://imdb-api.com/en/API/Title/${IMDB_APP_API_KEY}/tt1375666/FullActor,FullCast,Posters,Images,Trailer,Ratings,Wikipedia`;
-
 function Movie() {
   const [movieData, setMovieData] = useState({});
   const [movie, setMovie] = useState("tt1375666");
   const [searchParams] = useSearchParams();
-
-  //10 fav movies
-  //The Shawshank Redemption, Forrest Gump, The Lion King, Joker, Coco, Good Will Hunting, 3 Idiots, Room, Spotlight, The Help
 
   console.log("searchParams", searchParams.get("movie"));
 
@@ -22,8 +17,7 @@ function Movie() {
     setMovie(movieToQuery);
     axios
       .get(
-        // `https://imdb-api.com/en/API/Title/${IMDB_APP_API_KEY}/${movieToQuery}/FullActor,FullCast,Posters,Images,Trailer,Ratings,Wikipedia`
-        `https://imdb-api.com/en/API/Top250Movies/${IMDB_APP_API_KEY}]`
+        `https://imdb-api.com/en/API/Title/${IMDB_APP_API_KEY}/${movieToQuery}/FullActor,FullCast,Posters,Images,Trailer,Ratings,Wikipedia`
       )
       .then(function (mresponse) {
         setMovieData(mresponse.data);
@@ -34,7 +28,7 @@ function Movie() {
       });
   }, []);
 
-  // console.log("Movie", movieData);
+  console.log("Movie", movieData);
 
   const {
     awards,
@@ -81,7 +75,7 @@ function Movie() {
   return (
     <div>
       <Header />
-      <h1>All Movies</h1>
+      <h1>Individual Movie</h1>
       <MovieCard
         awards={awards}
         companies={companies}
