@@ -20,8 +20,6 @@ function Movies() {
       });
   }, []);
 
-  console.log("all", movieData);
-
   const filteredArray = movieData.filter((item) => {
     if (
       item.id === "tt0111161" ||
@@ -37,7 +35,6 @@ function Movies() {
     )
       return item;
   });
-  console.log("array", filteredArray);
 
   return (
     <div>
